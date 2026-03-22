@@ -1,102 +1,950 @@
-**通学する学校のタイプ、ビザの申請国などで、手配に必要な時間や書類が変わります。
-特に現地でのビザ申請をご希望、かつ専門コースをご希望の場合は、最低でもビザ期限の4−５ヶ月前までにご相談を開始ください。**
 
-## 🧭 あなたはどのタイプ？学生ビザ診断
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生ビザ診断 | Find Your Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rose: #E8AFAF;
+            --rose-light: #F5DADA;
+            --rose-deep: #C4847A;
+            --sand: #F5EDE3;
+            --sand-mid: #EAD9C8;
+            --cream: #FDFAF7;
+            --ivory: #F9F4EE;
+            --text: #3A2E2A;
+            --text-mid: #7A6A63;
+            --text-light: #B4A59E;
+            --sage: #9FAF94;
+            --sage-light: #D4E0CE;
+            --gold: #C49A5A;
+            --gold-light: #E8D5B0;
+            --sky: #A8C4CF;
+            --green: #7BA87B;
+            --blue: #7A9EBF;
+            --amber: #C4A048;
+            --orange: #C47A4A;
+        }
 
-3つの質問に答えて、当てはまるタイプをチェックしてください👇
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
----
+        body {
+            font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+            background: var(--sand);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-### Q1. どこから申請しますか？
+        body::before {
+            content: '';
+            position: fixed;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(232,175,175,0.2) 0%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -150px; left: -150px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(159,175,148,0.18) 0%, transparent 70%);
+            pointer-events: none; z-index: 0;
+        }
 
-☐ A. 日本から申請する
+        .page {
+            position: relative; z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px 60px;
+        }
 
-☐ B. オーストラリア国内から申請する
+        .card {
+            background: var(--cream);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 36px;
+            padding: 52px 48px;
+            box-shadow:
+                0 2px 4px rgba(58,46,42,0.04),
+                0 8px 24px rgba(58,46,42,0.06),
+                0 32px 80px rgba(58,46,42,0.08);
+            position: relative;
+            overflow: hidden;
+        }
 
----
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--rose) 0%, var(--gold) 50%, var(--sage) 100%);
+        }
 
-### Q2. 学びたい内容は？
+        /* ── Header ── */
+        .site-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
 
-☐ A. 語学学校のみ
+        .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.3em;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .logo-mark::before, .logo-mark::after {
+            content: '';
+            display: block;
+            width: 28px; height: 1px;
+            background: var(--rose);
+        }
 
-☐ B. 専門コースも検討している
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            color: var(--text);
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+        h1 em { font-style: italic; color: var(--rose-deep); }
 
----
+        .tagline {
+            font-size: 0.76rem;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+            font-weight: 300;
+        }
 
-### Q3. いつから通学したいですか？
+        /* ── Notice banner ── */
+        .notice-banner {
+            background: linear-gradient(135deg, #FEF8F5 0%, #FBF4EE 100%);
+            border: 1px solid var(--gold-light);
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .notice-banner-icon {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .notice-banner-title {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .notice-banner p {
+            font-size: 0.82rem;
+            color: var(--text-mid);
+            line-height: 1.75;
+        }
+        .notice-banner strong { color: var(--rose-deep); font-weight: 500; }
 
-☐ A. できるだけ早く（1〜3ヶ月以内）
+        /* ── Step indicator ── */
+        .steps-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 36px;
+        }
+        .step-dot {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--sand-mid);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: all 0.35s ease;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+        }
+        .step-dot.active {
+            background: var(--rose-deep);
+            color: white;
+            box-shadow: 0 4px 16px rgba(196,132,122,0.35);
+            transform: scale(1.1);
+        }
+        .step-dot.done {
+            background: var(--sage);
+            color: white;
+        }
+        .step-line {
+            height: 2px;
+            width: 40px;
+            background: var(--sand-mid);
+            transition: background 0.35s ease;
+        }
+        .step-line.done { background: var(--sage); }
 
-☐ B. 少し先でもOK（3ヶ月以上）
+        /* ── Question card ── */
+        .q-wrap {
+            margin-bottom: 8px;
+        }
 
----
+        .q-label-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .q-badge {
+            display: inline-block;
+            background: var(--rose-light);
+            color: var(--rose-deep);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
 
-## 🎯 診断結果（当てはまるものをチェック）
+        .q-text {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1.18rem;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
 
-▶ ▶ ▶ 下から一番近いタイプを選んでください
+        /* ── Toggle options ── */
+        .toggle-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
 
----
+        .toggle-btn {
+            background: var(--ivory);
+            border: 1.5px solid var(--sand-mid);
+            border-radius: 16px;
+            padding: 16px 18px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-### ▶ 🟢 パターン①：B＋A＋A
-オーストラリア国内 ビザ申請× 語学コースのみ
+        .toggle-btn:hover {
+            border-color: var(--rose);
+            background: #FEF8F8;
+        }
 
-👉 英語力をまず伸ばしたい方向け
+        .toggle-btn.selected {
+            border-color: var(--rose-deep);
+            background: linear-gradient(135deg, #FEF1F0 0%, #FDF8F8 100%);
+            box-shadow: 0 4px 16px rgba(196,132,122,0.15);
+        }
 
-- 比較的シンプルな手配ステップ
-- 学校の選択肢が多い
+        .toggle-btn-letter {
+            display: inline-block;
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--sand-mid);
+            color: var(--text-mid);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-align: center;
+            line-height: 22px;
+            margin-bottom: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            transition: all 0.25s;
+        }
 
-語学学校から柔軟にスタートできるプランです。
+        .toggle-btn.selected .toggle-btn-letter {
+            background: var(--rose-deep);
+            color: white;
+        }
 
-**現在のビザが切れる2−3ヶ月前には手続きを開始しましょう！**
+        .toggle-btn-text {
+            font-size: 0.84rem;
+            color: var(--text);
+            line-height: 1.4;
+            font-weight: 300;
+            display: block;
+        }
+        .toggle-btn-sub {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            margin-top: 3px;
+            display: block;
+        }
 
----
+        /* Divider */
+        .q-divider {
+            height: 1px;
+            background: var(--sand-mid);
+            margin: 24px 0;
+        }
 
-### ▶ 🔵 パターン②：B+B+A
-オーストラリア国内 ビザ申請 × 語学＋専門コース
+        /* ── Next button ── */
+        .next-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--text) 0%, #5A4440 100%);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            border-radius: 50px;
+            border: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            margin-top: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+        }
+        .next-btn::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--rose-deep), #8B5E5A);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .next-btn:hover::before { opacity: 1; }
+        .next-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(58,46,42,0.18); }
+        .next-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+        .next-btn span { position: relative; z-index: 1; }
 
-👉 将来の進学・現地就職を見据える方向け
+        /* ── Result ── */
+        #result-screen { display: none; }
 
-- パッケージ申込ならIELTS不要で進学が可能（ELICOS＋VET）
-- １つの学生ビザで２校の通学期間をカバーできる
-- コース開始日に制限あり（専門コースの入学日に合わせる必要があります）
+        .result-top {
+            text-align: center;
+            margin-bottom: 28px;
+        }
 
-**現在のビザが切れる4−5ヶ月前には相談を開始し、3ヶ月前には手続きを開始しましょう！**
+        .result-pattern-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
 
----
+        .result-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.9rem;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .result-title strong { font-weight: 600; }
 
-### ▶ 🟡 パターン③：A+A+B
-日本から申請（オフショア）✖️語学コースのみ
+        .result-desc {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
 
-👉 ビザのリスクを回避して学生ビザを取りたい方向け
+        /* Summary chips */
+        .answer-summary {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .answer-chip {
+            background: var(--ivory);
+            border: 1px solid var(--sand-mid);
+            border-radius: 50px;
+            padding: 6px 14px;
+            font-size: 0.72rem;
+            color: var(--text-mid);
+        }
+        .answer-chip span {
+            font-weight: 500;
+            color: var(--text);
+        }
 
-- 一度帰国して申請
-- 審査が比較的安定
-- 学校・コースの自由度が高い
-- 渡航タイミングの調整が必要（日本でビザが降りてからの再入国となります）
-- 早く再入国する場合は、帰国前にできる手配を開始しておくのも◎！
+        /* ── Feature list ── */
+        .features-card {
+            background: var(--ivory);
+            border-radius: 20px;
+            padding: 24px 26px;
+            margin-bottom: 20px;
+        }
+        .features-title {
+            font-size: 0.66rem;
+            letter-spacing: 0.18em;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .feature-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sand-mid);
+        }
+        .feature-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .feature-icon {
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .feature-content {}
+        .feature-name {
+            font-size: 0.86rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .feature-sub {
+            font-size: 0.74rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
 
-**現在のビザが切れる2-3ヶ月前には相談を開始し、帰国後すぐにビザ手続きを開始しましょう！**
+        /* ── Timeline card ── */
+        .timeline-card {
+            border-radius: 20px;
+            padding: 24px 26px;
+            margin-bottom: 20px;
+            border: 1.5px solid;
+        }
+        .timeline-title {
+            font-size: 0.66rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-weight: 500;
+        }
+        .timeline-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .tl-step {
+            display: flex;
+            gap: 16px;
+            position: relative;
+        }
+        .tl-step:not(:last-child) .tl-line {
+            display: block;
+        }
+        .tl-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            width: 28px;
+        }
+        .tl-dot {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .tl-line {
+            display: none;
+            width: 1.5px;
+            flex: 1;
+            min-height: 20px;
+            background: var(--sand-mid);
+            margin: 3px 0;
+        }
+        .tl-right {
+            padding-bottom: 20px;
+            flex: 1;
+        }
+        .tl-step:last-child .tl-right { padding-bottom: 0; }
+        .tl-timing {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            margin-bottom: 3px;
+        }
+        .tl-text {
+            font-size: 0.82rem;
+            color: var(--text-mid);
+            line-height: 1.55;
+        }
 
----
+        /* ── Warning card ── */
+        .warning-card {
+            background: linear-gradient(135deg, #FFF8F5 0%, #FFF3EE 100%);
+            border: 1.5px solid #E8C4A8;
+            border-radius: 16px;
+            padding: 20px 22px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+        .warning-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+        .warning-content {}
+        .warning-title {
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--orange);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+        .warning-text {
+            font-size: 0.8rem;
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+        .warning-text strong { color: var(--text); font-weight: 500; }
 
-### ▶ 🟠 パターン④：A+B+B
-日本から申請（オフショア）✖️語学＋専門コース
+        /* ── CTA ── */
+        .cta-group { display: flex; flex-direction: column; gap: 11px; }
+        .cta-primary {
+            display: block;
+            background: linear-gradient(135deg, var(--text) 0%, #5A4440 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            transition: all 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .cta-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--rose-deep), #8B5E5A);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .cta-primary:hover::before { opacity: 1; }
+        .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(58,46,42,0.18); }
+        .cta-primary span { position: relative; z-index: 1; }
 
-👉 ビザのリスクを回避して学生ビザを取りたい方向け
+        .cta-secondary {
+            display: block;
+            background: transparent;
+            color: var(--text-light);
+            text-align: center;
+            padding: 14px;
+            border-radius: 50px;
+            border: 1.5px solid var(--sand-mid);
+            text-decoration: none;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'DM Sans', 'Noto Sans JP', sans-serif;
+            background: none;
+        }
+        .cta-secondary:hover { border-color: var(--rose); color: var(--rose-deep); }
 
-- 一度帰国して申請
-- 審査が比較的安定
-- パッケージ申込ならIELTS不要で進学が可能（ELICOS＋VET）
-- １つの学生ビザで２校の通学期間をカバーできる
-- コース開始日に制限あり（専門コースの入学日に合わせる必要があります）
-- 渡航タイミングの調整が必要（日本でビザが降りてからの再入国となります）
-- 早く再入国する場合は、帰国前にできる手配を開始しておくのも◎！
+        .footer-note {
+            text-align: center;
+            font-size: 0.68rem;
+            color: var(--text-light);
+            margin-top: 22px;
+            line-height: 1.8;
+        }
 
-**現在のビザが切れる3-4ヶ月前には相談を開始し、帰国後すぐにビザ手続きを開始しましょう！**
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fadeUp 0.45s cubic-bezier(0.4,0,0.2,1) forwards; }
 
-<aside>
-⚠️
+        @media (max-width: 500px) {
+            .card { padding: 40px 24px; border-radius: 28px; }
+            h1 { font-size: 1.8rem; }
+            .toggle-group { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+<div class="card">
 
-既に学生ビザを１度使用したことがある・パンデミックビザの使用歴がある、３回以上ビザの申請を行なっている場合は、上記の限りではありません。ビザの申請がハイリスクとなるため、カウンセリングにてご相談ください。
+    <!-- ===== QUIZ SCREEN ===== -->
+    <div id="quiz-screen">
+        <div class="site-header">
+            <div class="logo-mark">Visa Guide</div>
+            <h1>あなたの<em>ビザ</em>タイプ診断</h1>
+            <p class="tagline">学生ビザ ― オーストラリア専門 / 3つの質問で判定</p>
+        </div>
 
-</aside>
+        <!-- Notice -->
+        <div class="notice-banner">
+            <div class="notice-banner-icon">📌</div>
+            <div class="notice-banner-title">ご相談のタイミングについて</div>
+            <p>通学する学校のタイプやビザ申請国によって、手配に必要な時間・書類が異なります。<br>
+            特に<strong>現地でのビザ申請 ＋ 専門コース希望</strong>の場合は、<strong>ビザ期限の4〜5ヶ月前</strong>までにご相談ください。</p>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps-indicator" id="steps-indicator">
+            <div class="step-dot active" id="dot-0">Q1</div>
+            <div class="step-line" id="line-0"></div>
+            <div class="step-dot" id="dot-1">Q2</div>
+            <div class="step-line" id="line-1"></div>
+            <div class="step-dot" id="dot-2">Q3</div>
+        </div>
+
+        <!-- Q content -->
+        <div id="q-content"></div>
+
+        <button class="next-btn" id="next-btn" disabled onclick="nextQ()">
+            <span id="next-btn-label">次の質問へ →</span>
+        </button>
+    </div>
+
+    <!-- ===== RESULT SCREEN ===== -->
+    <div id="result-screen">
+
+        <div class="result-top">
+            <div class="result-pattern-badge" id="res-badge"></div>
+            <div class="result-title" id="res-title"></div>
+            <div class="result-desc" id="res-desc"></div>
+        </div>
+
+        <!-- Answer summary -->
+        <div class="answer-summary" id="res-answer-summary"></div>
+
+        <!-- Features -->
+        <div class="features-card">
+            <div class="features-title">このプランの特徴</div>
+            <div id="res-features"></div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-card" id="res-timeline-card">
+            <div class="timeline-title" id="res-timeline-title">動くべきタイミング</div>
+            <div class="timeline-steps" id="res-timeline"></div>
+        </div>
+
+        <!-- Warning -->
+        <div class="warning-card">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+                <div class="warning-title">ご注意 ― ハイリスク申請について</div>
+                <div class="warning-text">
+                    <strong>学生ビザを過去に1度以上使用した・パンデミックビザの使用歴がある・ビザ申請が合計3回以上</strong>の場合は、上記の目安は当てはまりません。申請がハイリスクとなるため、まずはカウンセリングにてご相談ください。
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-group">
+            <a href="#" class="cta-primary"><span>🌿 無料カウンセリングに申し込む</span></a>
+            <button class="cta-secondary" onclick="reset()">もう一度診断する</button>
+        </div>
+
+        <p class="footer-note">
+            ※診断結果はあくまで目安です。個人の状況によって異なる場合があります。<br>
+            詳細は専門カウンセラーへご相談ください。
+        </p>
+    </div>
+
+</div>
+</div>
+
+<script>
+const questions = [
+    {
+        badge: 'Question 01',
+        text: 'どこからビザを申請しますか？',
+        options: [
+            { letter: 'A', text: '日本から申請する', sub: 'オフショア申請（一度帰国して申請）', val: 'japan' },
+            { letter: 'B', text: 'オーストラリア国内から申請する', sub: 'オンショア申請（現地滞在中に申請）', val: 'australia' }
+        ]
+    },
+    {
+        badge: 'Question 02',
+        text: '学びたい内容は？',
+        options: [
+            { letter: 'A', text: '語学学校のみ', sub: '英語力アップに集中したい', val: 'english' },
+            { letter: 'B', text: '専門コースも検討している', sub: 'TAFE / カレッジ等の資格コースも視野に', val: 'specialist' }
+        ]
+    },
+    {
+        badge: 'Question 03',
+        text: 'いつから通学を始めたいですか？',
+        options: [
+            { letter: 'A', text: 'できるだけ早く', sub: '1〜3ヶ月以内に開始したい', val: 'soon' },
+            { letter: 'B', text: '少し先でもOK', sub: '3ヶ月以上の余裕がある', val: 'later' }
+        ]
+    }
+];
+
+let currentQ = 0;
+let selected = [null, null, null]; // val per question
+
+function renderQ() {
+    const d = questions[currentQ];
+    const content = document.getElementById('q-content');
+    content.style.opacity = '0';
+    content.style.transform = 'translateY(10px)';
+
+    setTimeout(() => {
+        content.innerHTML = `
+            <div class="q-wrap">
+                <div class="q-label-row">
+                    <span class="q-badge">${d.badge}</span>
+                </div>
+                <div class="q-text">${d.text}</div>
+                <div class="toggle-group">
+                    ${d.options.map((o, i) => `
+                        <button class="toggle-btn ${selected[currentQ] === o.val ? 'selected' : ''}"
+                                onclick="selectOpt('${o.val}', this)">
+                            <span class="toggle-btn-letter">${o.letter}</span>
+                            <span class="toggle-btn-text">${o.text}</span>
+                            <span class="toggle-btn-sub">${o.sub}</span>
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        content.style.transition = 'all 0.38s cubic-bezier(0.4,0,0.2,1)';
+        content.style.opacity = '1';
+        content.style.transform = 'translateY(0)';
+
+        // update next btn
+        const nb = document.getElementById('next-btn');
+        nb.disabled = selected[currentQ] === null;
+        document.getElementById('next-btn-label').textContent =
+            currentQ < 2 ? '次の質問へ →' : '診断結果を見る ✦';
+    }, 160);
+
+    // update step dots
+    for (let i = 0; i < 3; i++) {
+        const dot = document.getElementById(`dot-${i}`);
+        dot.className = 'step-dot' + (i < currentQ ? ' done' : (i === currentQ ? ' active' : ''));
+        if (i < 2) {
+            document.getElementById(`line-${i}`).className = 'step-line' + (i < currentQ ? ' done' : '');
+        }
+    }
+}
+
+function selectOpt(val, el) {
+    selected[currentQ] = val;
+    el.closest('.toggle-group').querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('next-btn').disabled = false;
+}
+
+function nextQ() {
+    if (selected[currentQ] === null) return;
+    if (currentQ < 2) {
+        currentQ++;
+        renderQ();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById('quiz-screen').style.display = 'none';
+    const rs = document.getElementById('result-screen');
+    rs.style.display = 'block';
+    rs.style.opacity = '0';
+    setTimeout(() => { rs.style.transition = 'opacity 0.55s ease'; rs.style.opacity = '1'; }, 30);
+    buildResult();
+}
+
+function buildResult() {
+    const [loc, course, timing] = selected; // japan/australia, english/specialist, soon/later
+    let plan = {};
+
+    // ─── Pattern matching ───────────────────────────────────
+    // Pattern ①: オーストラリア国内 × 語学のみ  (B+A+A or B+A+B)
+    if (loc === 'australia' && course === 'english') {
+        plan = {
+            patternNum: '①',
+            patternColor: '#7BA87B',
+            patternBg: '#F2F8F1',
+            badge: 'パターン ① ― シンプル語学留学',
+            title: '現地申請 ×\n<strong>語学コースのみ</strong>',
+            desc: '英語力をまず伸ばしたい方向けのスタンダードプラン',
+            answerLabels: ['🇦🇺 オーストラリア国内から申請', '📚 語学学校のみ', timing === 'soon' ? '⚡ できるだけ早く' : '🕐 3ヶ月以上の余裕あり'],
+            features: [
+                { icon: '✅', bg: '#EDF6EC', name: '比較的シンプルな手配ステップ', sub: '書類準備・申請フローが少なく、スムーズに進みやすい' },
+                { icon: '🏫', bg: '#F2F8F1', name: '学校の選択肢が豊富', sub: '語学学校は選択肢が多く、エリアや授業スタイルで自由に選べる' },
+                { icon: '🔄', bg: '#EDF6EC', name: '語学から柔軟にスタート可能', sub: '渡航後の状況に合わせてプランを変更しやすい' }
+            ],
+            timelineColor: '#7BA87B',
+            timelineBg: '#F2F8F1',
+            timelineBorderColor: '#C8E0C5',
+            timelineLabel: '📅 推奨タイムライン',
+            timeline: [
+                { dot: '🗓️', dotBg: '#EDF6EC', timing: 'ビザ期限の 2〜3ヶ月前', text: 'まずはエージェントへ相談を開始。学校選び・ビザの状況確認' },
+                { dot: '📋', dotBg: '#D9EDD7', timing: '2ヶ月前', text: '学校・コースを確定。申請書類を準備しビザ申請へ' },
+                { dot: '✈️', dotBg: '#C8E0C5', timing: '1ヶ月前〜', text: '学生ビザ取得後、コース開始日に合わせて通学スタート' }
+            ]
+        };
+    }
+    // Pattern ②: オーストラリア国内 × 語学＋専門 (B+B+A or B+B+B)
+    else if (loc === 'australia' && course === 'specialist') {
+        plan = {
+            patternNum: '②',
+            patternColor: '#7A9EBF',
+            patternBg: '#EEF4F8',
+            badge: 'パターン ② ― 語学＋専門コース',
+            title: '現地申請 ×\n<strong>語学＋専門コース</strong>',
+            desc: '将来の進学・現地就職を見据えるキャリア志向プラン',
+            answerLabels: ['🇦🇺 オーストラリア国内から申請', '🎓 語学＋専門コース', timing === 'soon' ? '⚡ できるだけ早く' : '🕐 3ヶ月以上の余裕あり'],
+            features: [
+                { icon: '🎓', bg: '#EEF4F8', name: 'IELTSなしで専門コースへ進学可能', sub: 'ELICOS（語学）＋VETのパッケージ申込でIELTSスコア不要' },
+                { icon: '📄', bg: '#E5EFF5', name: '1つのビザで2校カバー', sub: '1枚の学生ビザで語学学校と専門学校の両方の通学期間をカバー' },
+                { icon: '⚠️', bg: '#FFF8F0', name: 'コース開始日に注意が必要', sub: '専門コースの入学日に合わせたスケジュール管理が必須' }
+            ],
+            timelineColor: '#7A9EBF',
+            timelineBg: '#EEF4F8',
+            timelineBorderColor: '#B8D2E4',
+            timelineLabel: '📅 推奨タイムライン（余裕が少ない場合）',
+            timeline: [
+                { dot: '💬', dotBg: '#EEF4F8', timing: 'ビザ期限の 4〜5ヶ月前', text: '早めにカウンセリングを開始。専門コースの入学日・ビザの状況を確認' },
+                { dot: '📋', dotBg: '#D8E9F3', timing: '3ヶ月前', text: 'ELICOS＋VETのパッケージコースを確定。書類準備・ビザ申請へ' },
+                { dot: '✈️', dotBg: '#B8D2E4', timing: '1〜2ヶ月前', text: '学生ビザ取得後、専門コース開始日に合わせて通学スタート' }
+            ]
+        };
+    }
+    // Pattern ③: 日本から申請 × 語学のみ (A+A+A or A+A+B)
+    else if (loc === 'japan' && course === 'english') {
+        plan = {
+            patternNum: '③',
+            patternColor: '#C49A5A',
+            patternBg: '#FBF5EA',
+            badge: 'パターン ③ ― 日本申請・語学コース',
+            title: '日本から申請（オフショア）×\n<strong>語学コースのみ</strong>',
+            desc: 'ビザのリスクを回避して学生ビザを安全に取得したい方向け',
+            answerLabels: ['🇯🇵 日本から申請（オフショア）', '📚 語学学校のみ', timing === 'soon' ? '⚡ できるだけ早く' : '🕐 3ヶ月以上の余裕あり'],
+            features: [
+                { icon: '🛡️', bg: '#FBF5EA', name: '審査が比較的安定・安全', sub: '日本からのオフショア申請は承認率が高く、リスクを抑えられる' },
+                { icon: '🏫', bg: '#F5EDD9', name: '学校・コースの自由度が高い', sub: '語学学校や開始日を比較的自由に選べる' },
+                { icon: '✈️', bg: '#FAEBD5', name: '渡航タイミングの調整が必要', sub: '日本でビザが降りてから再入国。帰国前に手配を進めるとスムーズ' }
+            ],
+            timelineColor: '#C49A5A',
+            timelineBg: '#FBF5EA',
+            timelineBorderColor: '#E8D5B0',
+            timelineLabel: '📅 推奨タイムライン',
+            timeline: [
+                { dot: '💬', dotBg: '#FBF5EA', timing: 'ビザ期限の 2〜3ヶ月前', text: 'カウンセリングを開始。帰国前にできる手配（学校申込等）を先に進める' },
+                { dot: '🇯🇵', dotBg: '#F0E2C5', timing: '帰国後すぐ', text: 'オフショアビザ申請を開始。学校・ビザが揃ったら再渡航の準備' },
+                { dot: '✈️', dotBg: '#E8D5B0', timing: 'ビザ取得後', text: '学生ビザ取得確認後にオーストラリアへ再入国。通学スタート' }
+            ]
+        };
+    }
+    // Pattern ④: 日本から申請 × 語学＋専門 (A+B+A or A+B+B)
+    else {
+        plan = {
+            patternNum: '④',
+            patternColor: '#C47A4A',
+            patternBg: '#FBF0EA',
+            badge: 'パターン ④ ― 日本申請・語学＋専門コース',
+            title: '日本から申請（オフショア）×\n<strong>語学＋専門コース</strong>',
+            desc: 'ビザを安全に取得しつつ、キャリアアップも目指す本格プラン',
+            answerLabels: ['🇯🇵 日本から申請（オフショア）', '🎓 語学＋専門コース', timing === 'soon' ? '⚡ できるだけ早く' : '🕐 3ヶ月以上の余裕あり'],
+            features: [
+                { icon: '🛡️', bg: '#FBF0EA', name: '審査が比較的安定・安全', sub: '日本からのオフショア申請は承認率が高くリスクを抑えられる' },
+                { icon: '🎓', bg: '#F5E8DF', name: 'IELTSなしで専門コースへ進学可能', sub: 'ELICOS（語学）＋VETのパッケージでIELTSスコア不要' },
+                { icon: '📄', bg: '#FBF0EA', name: '1つのビザで2校カバー', sub: '1枚の学生ビザで語学・専門学校の両方の通学期間をカバー' },
+                { icon: '✈️', bg: '#F5E8DF', name: '渡航タイミングの調整が必要', sub: '日本でビザが降りてから再入国。帰国前の手配を同時進行で進める' }
+            ],
+            timelineColor: '#C47A4A',
+            timelineBg: '#FBF0EA',
+            timelineBorderColor: '#E8C4A8',
+            timelineLabel: '📅 推奨タイムライン（特に余裕が必要なプラン）',
+            timeline: [
+                { dot: '💬', dotBg: '#FBF0EA', timing: 'ビザ期限の 3〜4ヶ月前', text: 'まずカウンセリングを開始。専門コースの入学日とビザ期限を照合' },
+                { dot: '📋', dotBg: '#EDD4C5', timing: '帰国後すぐ', text: 'オフショアビザ申請を即開始。ELICOS＋VETパッケージを同時確定' },
+                { dot: '✈️', dotBg: '#E8C4A8', timing: 'ビザ取得後', text: '専門コース開始日に合わせてオーストラリアへ再入国。通学スタート' }
+            ]
+        };
+    }
+
+    // ── DOM update ──
+    const badge = document.getElementById('res-badge');
+    badge.textContent = plan.badge;
+    badge.style.background = plan.patternBg;
+    badge.style.color = plan.patternColor;
+    badge.style.border = `1px solid ${plan.timelineBorderColor}`;
+
+    document.getElementById('res-title').innerHTML = plan.title.replace('\n', '<br>');
+    document.getElementById('res-desc').textContent = plan.desc;
+
+    document.getElementById('res-answer-summary').innerHTML = plan.answerLabels.map(l => `
+        <div class="answer-chip"><span>${l}</span></div>
+    `).join('');
+
+    document.getElementById('res-features').innerHTML = plan.features.map(f => `
+        <div class="feature-row">
+            <div class="feature-icon" style="background:${f.bg}">${f.icon}</div>
+            <div class="feature-content">
+                <div class="feature-name">${f.name}</div>
+                <div class="feature-sub">${f.sub}</div>
+            </div>
+        </div>
+    `).join('');
+
+    const tc = document.getElementById('res-timeline-card');
+    tc.style.background = plan.timelineBg;
+    tc.style.borderColor = plan.timelineBorderColor;
+    const tt = document.getElementById('res-timeline-title');
+    tt.style.color = plan.timelineColor;
+    tt.textContent = plan.timelineLabel;
+
+    document.getElementById('res-timeline').innerHTML = plan.timeline.map((s, i) => `
+        <div class="tl-step">
+            <div class="tl-left">
+                <div class="tl-dot" style="background:${s.dotBg}">${s.dot}</div>
+                ${i < plan.timeline.length - 1 ? '<div class="tl-line"></div>' : ''}
+            </div>
+            <div class="tl-right">
+                <div class="tl-timing" style="color:${plan.timelineColor}">${s.timing}</div>
+                <div class="tl-text">${s.text}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function reset() {
+    currentQ = 0;
+    selected = [null, null, null];
+    document.getElementById('result-screen').style.display = 'none';
+    document.getElementById('quiz-screen').style.display = 'block';
+    renderQ();
+}
+
+renderQ();
+</script>
+</body>
+</html>
